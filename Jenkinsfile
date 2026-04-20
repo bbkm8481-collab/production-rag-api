@@ -4,7 +4,6 @@ pipeline {
     environment {
         IMAGE_NAME = "mlops-rag-api"
         IMAGE_TAG = "v${env.BUILD_ID}"
-        // 🔥 PRO FIX: Tell Jenkins to look in Mac's default application folders for Docker
         PATH = "/usr/local/bin:/opt/homebrew/bin:${env.PATH}"
     }
 
@@ -28,6 +27,17 @@ pipeline {
             }
         }
 
+        stage('Deploy to Production') {
+            steps {
+                echo "Deploying the latest AI container..."
+                // 1. Force stop the old container if it exists (|| true prevents errors if it doesn't exist)
+                sh "docker rm -f mlops-rag-container || true"
+                
+                // 2. Run the new container in the background (-d) on port 8000
+                sh "docker run -d -p 8000:8000 --name mlops-rag-container ${IMAGE_NAME}:latest"
+            }
+        }
+
         stage('Security & Cleanup') {
             steps {
                 echo "Cleaning up dangling images to save space..."
@@ -38,7 +48,7 @@ pipeline {
     
     post {
         success {
-            echo "✅ Pipeline Succeeded! The RAG API is containerized and ready for deployment."
+            echo "✅ Pipeline Succeeded! The new RAG API is currently LIVE on port 8000."
         }
         failure {
             echo "❌ Pipeline Failed! Please check the logs."
