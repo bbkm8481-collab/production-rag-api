@@ -59,3 +59,7 @@ Run the API (Manual):
 Bash
 docker build -t mlops-rag-api .
 docker run -p 8000:8000 mlops-rag-api
+
+
+<img width="1434" height="776" alt="Screenshot 2026-04-21 at 12 38 10 AM" src="https://github.com/user-attachments/assets/28d37f75-1519-4b42-8118-1dd8c44229d1" />
+
