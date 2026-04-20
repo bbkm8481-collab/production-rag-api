@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     environment {
-        // Define our image name
         IMAGE_NAME = "mlops-rag-api"
-        IMAGE_TAG = "v${env.BUILD_ID}" // Automatically tags with the Jenkins build number
+        IMAGE_TAG = "v${env.BUILD_ID}"
+        // 🔥 PRO FIX: Tell Jenkins to look in Mac's default application folders for Docker
+        PATH = "/usr/local/bin:/opt/homebrew/bin:${env.PATH}"
     }
 
     stages {
