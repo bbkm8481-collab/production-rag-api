@@ -3,11 +3,10 @@ from pydantic import BaseModel
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
-from prometheus_fastapi_instrumentator import Instrumentator # 🔥 NEW IMPORT
+from prometheus_fastapi_instrumentator import Instrumentator 
 
 app = FastAPI(title="MLOps RAG Service", version="1.0")
 
-# 🔥 NEW TELEMETRY: This automatically exposes a /metrics endpoint for Grafana
 Instrumentator().instrument(app).expose(app)
 
 print("Loading embedding model...")
