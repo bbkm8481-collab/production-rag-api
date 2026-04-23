@@ -1,4 +1,4 @@
-# Simple FastAPI + Sentence Transformers + FAISS Demo
+# Simple FastAPI + Sentence Transformers + FAISS
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -8,7 +8,6 @@ import numpy as np
 
 app = FastAPI()
 
-# Load model and prepare FAISS index
 demo_sentences = [
     "I love machine learning.",
     "FastAPI is great for APIs.",
@@ -31,5 +30,3 @@ def search(query: Query):
     D, I = index.search(np.array(query_embedding, dtype=np.float32), k=2)
     results = [demo_sentences[i] for i in I[0]]
     return {"query": query.text, "results": results}
-
-# To run: uvicorn demo:app --reload
