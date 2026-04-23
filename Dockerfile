@@ -7,7 +7,7 @@ WORKDIR /app
 # 3. Copy requirements first
 COPY requirements.txt .
 
-# 4. 🔥 PRO MLOPS TRICK: Install the CPU-only version of PyTorch first!
+# 4. PRO MLOPS TRICK: Install the CPU-only version of PyTorch first!
 # This prevents it from downloading the massive 3GB GPU version.
 RUN pip install torch --index-url https://download.pytorch.org/whl/cpu
 
