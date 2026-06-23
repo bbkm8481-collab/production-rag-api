@@ -1,3 +1,6 @@
+# Production-Grade RAG API
+
+![RAG Architecture](ProductionRAGAPI.png)
 
 # Production-Grade RAG API with Automated MLOps Pipeline
 
